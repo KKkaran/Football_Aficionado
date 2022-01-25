@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const {Users} = require('../../models')
+const {Users, Posts, Comments} = require('../../models')
 
 
 //this will get all the users
@@ -8,7 +8,20 @@ router.get('/',(req,res)=>{
     Users.findAll({
         attributes:{
             exclude:['password']
-        }
+        },
+        include:[
+            {
+                model:Posts
+            },
+            {
+                model:Comments,
+                include:[
+                    {
+                        model:Posts
+                    }
+                ]
+            }
+        ]
     })
     .then(db=>res.json(db))
     .catch(er=>{

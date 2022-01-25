@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const {Users,Posts} = require('../../models')
+const {Users,Posts, Comments} = require('../../models')
 
 
 //this will get all the posts
@@ -12,6 +12,18 @@ router.get('/',(req,res)=>{
                     model:Users,
                     attributes:['username'],
                     foreignKey:'id'
+                },
+                {
+                    model:Comments,
+                    foreignKey:'user_id',
+                    attributes:['comment_text'],
+                    include:[
+                        {
+                            model:Users,
+                            foreignKey:'id',
+                            attributes:['username']
+                        }
+                    ]
                 }
             ]
         }
