@@ -2,6 +2,18 @@ const router = require('express').Router();
 const {Users, Posts, Comments} = require('../../models')
 
 
+router.get('/session',(req,res)=>{
+
+    if(req.session.loggedIn){
+        res.status(200).json({
+            data:"logged in"
+        })
+    }else{
+        res.status(400).json({
+            data:"guest user"
+        })
+    }
+})
 //this will get all the users
 router.get('/',(req,res)=>{
 
@@ -92,7 +104,7 @@ router.post('/login',(req,res)=>{
             req.session.username = db.username;
             req.session.loggedIn = true;
             
-            res.json({ user: db, message: 'You are now logged in!' });
+            res.json({message: 'You are now logged in!' });
         })
     })
 })
