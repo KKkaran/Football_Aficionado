@@ -65,5 +65,36 @@ router.post('/',(req,res)=>{
         res.status(500).json(er)
     })
 })
+//this will check the user credentials
+router.post('/login',(req,res)=>{
+    console.log("in login route")
+    
+    const email = req.body.email;
+    const password = req.body.password
+
+    console.log(req.body)
+    Users.findOne({
+        where:{
+            email:email
+        }
+    })
+    .then(db=>{
+        if(!db){
+            res.status(400).json({ message: 'No user with that email address!' });
+            return;
+        }
+        if(!db.checkPassword(password)){
+            res.status(400).json({ message: 'Incorrect password!' });
+            return;
+        }
+        req.session.save(() => {
+            req.session.user_id = db.id;
+            req.session.username = db.username;
+            req.session.loggedIn = true;
+            
+            res.json({ user: db, message: 'You are now logged in!' });
+        })
+    })
+})
 
 module.exports = router;

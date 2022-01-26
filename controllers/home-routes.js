@@ -2,6 +2,12 @@ const router = require('express').Router()
 const {Users, Posts, Comments} = require('../models')
 
 router.get('/',(req,res)=>{
+    let name = 'Guest';
+    console.log("*****************************\n")
+    console.log(req.session.username);
+    console.log("\n****************************")
+    if(req.session.username) name = req.session.username;
+    
     Posts.findAll(
         {
             include:[
@@ -27,13 +33,22 @@ router.get('/',(req,res)=>{
     )
     .then(db=>{
         const posts = db.map(r=>r.get({plain:true}))
-        res.render('homepage', {posts});
+        const posts2 = {
+            post: posts,
+            user:req.session.username,
+            login:req.session.loggedIn
+        }
+        res.render('homepage', {posts2});
         console.log(posts)
     })
 })
 
 router.get('/singlePost/:id',(req,res)=>{
     
+    if(!req.session.loggedIn){
+        res.render('login')
+        return
+    }
     Posts.findOne({
         where:{
             id: req.params.id
@@ -69,4 +84,12 @@ router.get('/singlePost/:id',(req,res)=>{
         res.status(500).json(er)
     })
 })
+router.get('/logout',(req,res)=>{
+    if(req.session.loggedIn){
+        req.session.destroy(()=>{
+            res.render("login")
+        })
+    }
+})
+
 module.exports = router;

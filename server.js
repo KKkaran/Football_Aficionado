@@ -5,12 +5,24 @@ const models = require('./models')
 const routes = require('./controllers')
 const handlebars = require('express-handlebars');
 const hbs = handlebars.create({});
-
+const session = require('express-session');
+const SequelizeStore = require('connect-session-sequelize')(session.Store);
 const path = require('path');
 
 const app = express()
 app.engine('handlebars',hbs.engine);
 app.set('view engine','handlebars');
+//creating a session
+app.use(
+    session({
+        secret:process.env.secret,
+        cookie:{},
+        resave:false,
+        saveUninitialized:false,
+        store: new SequelizeStore({
+            db: seq
+        })
+}))
 
 app.use(express.static(path.join(__dirname,"public")));
 app.use(express.json());
