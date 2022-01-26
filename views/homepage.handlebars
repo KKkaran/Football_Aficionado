@@ -1,0 +1,22 @@
+<br>
+<ol>    
+    {{#each posts as |post| }}
+        <div class="container card">
+            <div class="card-header">
+                <a href="/singlePost/{{post.id}}">{{post.title}}</a>
+            </div>
+            <div class="card-body">
+                <h4 class="card-text">{{post.description}}</h4>
+                {{!-- <div>
+                    <p>Comments: <br>
+                    {{#each post.comments as |c|}} 
+                        {{c.comment_text}} by {{c.user.username}}
+                        <br> 
+                    {{/each}}
+                </p>
+                </div> --}}
+            </div>            
+        </div>
+        <br>
+    {{/each}}
+</ol>
