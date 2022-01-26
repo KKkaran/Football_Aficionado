@@ -84,7 +84,7 @@ router.post('/login',(req,res)=>{
             return;
         }
         if(!db.checkPassword(password)){
-            res.status(400).json({ message: 'Incorrect password!' });
+            res.status(401).json({ message: 'Incorrect password!' });
             return;
         }
         req.session.save(() => {

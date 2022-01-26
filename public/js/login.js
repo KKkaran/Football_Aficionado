@@ -17,7 +17,11 @@ const loginUser = async(e)=>{
     if (response.ok) {
         document.location.replace('/');
     } else {
-        alert(response.statusText);
+        if(response.status == 400){
+          alert("No user with that email!!")
+        }else{
+          alert("Incorrect Password. Try again")
+        }
     }
 
     console.log('tryin to login the user')
