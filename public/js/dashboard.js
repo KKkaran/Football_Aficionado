@@ -7,7 +7,7 @@ const postPost2 = async(id)=>{
 
     console.log(title.value)
     console.log(description.value)
-    if(title.value.trim && description.value.trim){
+    if(title.value.trim() && description.value.trim()){
         const resp = await fetch('/api/posts',{
             method:'post',
             body: JSON.stringify({
