@@ -6,7 +6,11 @@ router.get('/session',(req,res)=>{
 
     if(req.session.loggedIn){
         res.status(200).json({
-            data:"logged in"
+            data:{
+                id:req.session.user_id,
+                username:req.session.username,
+                loggedIn:true
+            }
         })
     }else{
         res.status(400).json({

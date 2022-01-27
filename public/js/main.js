@@ -7,12 +7,16 @@ const getValueFromSessionsDb = async()=>{
         method:'get'
     })
 
-    if(res.status == 200){
-        loginText.text = "Logout"
-    }else{
-        loginText.text = "Login"
-
-    }
+    res.json().then(d=>{
+        console.log(d.data)
+        if(d.data.loggedIn){
+            loginText.text = "Logout"
+            console.log("already logged in")
+        }else{
+            loginText.text = "Login"
+            console.log("guest mode")
+        }
+    })
 }
 
 getValueFromSessionsDb();
