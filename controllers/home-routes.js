@@ -96,6 +96,10 @@ router.get('/logout',(req,res)=>{
 
 router.get('/dashboard',(req,res)=>{
     
+    if(!req.session.loggedIn){
+        res.render('login')
+        return
+    }
     res.render('dashboard')
 
 })

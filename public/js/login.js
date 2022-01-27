@@ -26,7 +26,37 @@ const loginUser = async(e)=>{
 
     console.log('tryin to login the user')
 }
+const signupUser = async(e)=>{
+  e.preventDefault()
+  console.log("in signup")
 
+  let username = document.querySelector("#usernameSignup").value.trim()
+  let email = document.querySelector("#emailSignup").value.trim()
+  let password = document.querySelector("#passwordSignup").value.trim()
+
+  console.log(username,email,password)
+  if(username && email && password){
+
+    const resp = await fetch("/api/users",{
+      method: 'post',
+        body: JSON.stringify({
+         username:username,
+         email:email,
+         password:password
+        }),
+        headers: { 'Content-Type': 'application/json' }
+    })
+
+    if(resp.ok){
+      document.location.replace('/')
+    }else {
+     console.log("error in signing up") 
+    }
+
+  }
+  
+}
 
 
 document.querySelector(".form-login").addEventListener('submit', loginUser)
+document.querySelector(".form-signup").addEventListener('submit', signupUser)

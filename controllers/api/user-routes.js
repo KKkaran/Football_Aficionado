@@ -68,14 +68,24 @@ router.post('/',(req,res)=>{
         email:req.body.email,
         password:req.body.password
     })
-    .then(db=>res.json({
-        success:"user created successfully",
-        data:{
-            id:db.id,
-            username:db.username,
-            email:db.email
+    .then(db=>
+        {
+            console.log(db)
+            req.session.save(() => {
+                req.session.user_id = db.id;
+                req.session.username = db.username;
+                req.session.loggedIn = true;
+                
+                res.json({
+                    success:"user created successfully",
+                    data:{
+                        id:db.id,
+                        username:db.username,
+                        email:db.email
+                    }});
+            })
         }
-    }))
+    )
     .catch(er=>{
         console.log(er);
         res.status(500).json(er)
