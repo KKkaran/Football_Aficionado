@@ -10,7 +10,7 @@ router.get('/',(req,res)=>{
     
     Posts.findAll(
         {   
-            order:[['createdAt','DESC']],
+            order:[['updatedAt','DESC']],
             include:[
                 {
                     model:Users,
@@ -105,8 +105,12 @@ router.get('/singlePost/:id',(req,res)=>{
     })
     .then(db=>{
         const post = db.get({plain:true})
-        res.render('single-post', {post});
-        console.log(post)
+        const updatedPost = {
+            post:post,
+            userId:req.session.user_id
+        }
+        res.render('single-post', {updatedPost});
+        console.log(updatedPost)
     })
     .catch(er=>{
         console.log(er);
