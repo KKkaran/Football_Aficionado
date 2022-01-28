@@ -110,6 +110,11 @@ router.get('/singlePost/:id',(req,res)=>{
     })
     .then(db=>{
         const post = db.get({plain:true})
+        // const g = post.map(r=>{
+        //     r.date = require("moment")(r.createdAt).format("LLLL")
+        // })
+        const ggg = post.createdAt;
+        post.date = require("moment")(ggg).format("LLLL")
         const updatedPost = {
             post:post,
             userId:req.session.user_id

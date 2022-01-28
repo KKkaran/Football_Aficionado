@@ -1,7 +1,10 @@
 <br>  
     <div class="container card">
             <div class="card-header">
-                <strong>{{updatedPost.post.title}}</strong> by <strong>{{updatedPost.post.user.username}}</strong>
+    
+                <div class="d-flex justify-content-between">
+                    <div><strong>{{updatedPost.post.title}}</strong> by <strong>{{updatedPost.post.user.username}}</strong></div> <div> {{updatedPost.post.date}}</div>
+                </div>
             </div>
             <div class="card-body">
                 <h4 class="card-text">{{updatedPost.post.description}} </h4>
