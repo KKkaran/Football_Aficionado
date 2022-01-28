@@ -4,7 +4,9 @@
     {{#each p as |post| }}
         <div class="container card">
             <div class="card-header">
-                <a href="/singlePost/{{post.id}}">{{post.title}} </a> by {{post.user.username}}
+                <div class="d-flex justify-content-between">
+                    <div><a href="/singlePost/{{post.id}}">{{post.title}} </a> by {{post.user.username}}</div> <div> {{post.date}}</div>
+                </div>
             </div>
             <div class="card-body">
                 <h4 class="card-text">{{post.description}}</h4>  

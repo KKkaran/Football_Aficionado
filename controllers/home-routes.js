@@ -1,5 +1,6 @@
 const router = require('express').Router()
 const {Users, Posts, Comments} = require('../models')
+const moment = require("moment");
 
 router.get('/',(req,res)=>{
     let name = 'Guest';
@@ -34,13 +35,17 @@ router.get('/',(req,res)=>{
     )
     .then(db=>{
         const posts = db.map(r=>r.get({plain:true}))
+        const updatedPosts = posts.map(r=>{
+            r.date = require("moment")(r.createdAt).format("LLLL")
+        })
         const posts2 = {
             post: posts,
             user:req.session.username,
             login:req.session.loggedIn
         }
         res.render('homepage', {posts2});
-        console.log(posts)
+        console.log(posts2)
+
     })
 })
 router.get('/users/:id',(req,res)=>{
