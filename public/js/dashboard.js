@@ -1,4 +1,5 @@
 let id;
+//these 2 methods below are called when to create a new post
 const postPost2 = async(id)=>{
     //e.preventDefault();
     //this is for posting a post
@@ -25,7 +26,6 @@ const postPost2 = async(id)=>{
         }
     }
 }
-
 const getId = async(e)=>{
     e.preventDefault();
     const res = await fetch('/api/users/session',{
@@ -37,6 +37,8 @@ const getId = async(e)=>{
         postPost2(id);
     })
 }
+
+//this is called when page refreshes to get the user id and get all his posts to display in the dashboard stuff.
 const getId2 = async(e)=>{
     const res = await fetch('/api/users/session',{
         method:'get'

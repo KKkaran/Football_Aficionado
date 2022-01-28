@@ -9,7 +9,8 @@ router.get('/',(req,res)=>{
     if(req.session.username) name = req.session.username;
     
     Posts.findAll(
-        {
+        {   
+            order:[['createdAt','DESC']],
             include:[
                 {
                     model:Users,
@@ -48,9 +49,11 @@ router.get('/users/:id',(req,res)=>{
         where:{
             id: req.params.id
         },
+        
         include:[
             {
-                model:Posts
+                model:Posts,
+                order:[['createdAt','DESC']],
             },
             {
                 model:Comments,
@@ -119,7 +122,6 @@ router.get('/logout',(req,res)=>{
     }
     res.render('login')
 })
-
 router.get('/dashboard',(req,res)=>{
     
     if(!req.session.loggedIn){
