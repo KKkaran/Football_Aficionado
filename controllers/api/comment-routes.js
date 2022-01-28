@@ -16,7 +16,10 @@ router.post('/', (req, res) => {
         user_id: req.body.user_id,
         post_id: req.body.post_id
       })
-        .then(dbCommentData => res.json(dbCommentData))
+        .then(dbCommentData => res.json({
+          success:"good",
+          dbCommentData:dbCommentData
+        }))
         .catch(err => {
           console.log(err);
           res.status(400).json(err);

@@ -61,8 +61,7 @@ const getId2 = async(e)=>{
             }else{
                 $(".oldPosts").append($("<h3>").text("No posts"))
             }
-            
-
+        
         })
     })
 

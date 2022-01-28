@@ -1,7 +1,7 @@
 document.querySelector('.addComment').addEventListener('submit',async function(e){
-    e.preventDefault()
     
-    let comment_text = document.querySelector("#commentText").value.trim()
+    e.preventDefault();
+    let comment_text = document.querySelector("#commentText").value.trim();
     if(comment_text){
         const res = await fetch("/api/users/session",{
             method:'get'
@@ -20,16 +20,13 @@ document.querySelector('.addComment').addEventListener('submit',async function(e
                 headers: { 'Content-Type': 'application/json' }
             })
 
-            if(resp.ok){
-                document.location.replace('/')
-            }else {
-                console.log("error in signing up") 
-            }
+            resp.then(r=>r.json()).then(g=>{
+                if(g.success){
+                    document.location.replace('/')
+                }
+            })
+
         })
-        
-
-
-
     }else{
         console.log("please comment something")
     }
