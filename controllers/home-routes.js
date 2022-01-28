@@ -42,7 +42,33 @@ router.get('/',(req,res)=>{
         console.log(posts)
     })
 })
-
+router.get('/users/:id',(req,res)=>{
+    console.log("in specif users dashboard")
+    Users.findOne({
+        where:{
+            id: req.params.id
+        },
+        include:[
+            {
+                model:Posts
+            },
+            {
+                model:Comments,
+                include:[
+                    {
+                        model:Posts
+                    }
+                ]
+            }
+        ]
+    })
+    .then(db=>{
+        const posts = db.get({plain:true})
+        res.json({
+            posts:posts.posts
+        })
+    })
+})
 router.get('/singlePost/:id',(req,res)=>{
     
     if(!req.session.loggedIn){
@@ -101,7 +127,7 @@ router.get('/dashboard',(req,res)=>{
         return
     }
     res.render('dashboard')
-
+ 
 })
 
 module.exports = router;

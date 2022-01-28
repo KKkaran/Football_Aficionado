@@ -1,4 +1,4 @@
-
+let id;
 const postPost2 = async(id)=>{
     //e.preventDefault();
     //this is for posting a post
@@ -37,5 +37,37 @@ const getId = async(e)=>{
         postPost2(id);
     })
 }
+const getId2 = async(e)=>{
+    const res = await fetch('/api/users/session',{
+        method:'get'
+    })
+
+    res.json().then(d=>d.data.id).then((f)=>{
+        console.log("this is f:" + f)
+        fetch(`/users/` + f,{
+            method:'get'
+        }).then(g=>g.json()).then(h=>{
+            console.log(h.posts)
+
+            const dad = $("<div>")
+            if(h.posts.length>0){
+                h.posts.forEach(element => {
+                    dad.append($('<h3>').text(element.title))
+                });
+    
+                $(".oldPosts").append(dad)
+            }else{
+                $(".oldPosts").append($("<h3>").text("No posts"))
+            }
+            
+
+        })
+    })
+
+}
+
 
 document.querySelector(".go").addEventListener("click",getId)
+
+getId2()
+

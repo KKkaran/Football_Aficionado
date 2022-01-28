@@ -1,6 +1,4 @@
-<br>
-
-    <div class="container">
+<div class="container">
         <h2>Welcome, 
             {{#if posts2.login}}
                 {{posts2.user}}
@@ -9,17 +7,4 @@
             {{/if}}
         </h2>
     </div>
-<ol>    
-    {{#each posts2.post as |post| }}
-        <div class="container card">
-            <div class="card-header">
-                <a href="/singlePost/{{post.id}}">{{post.title}} </a> by {{post.user.username}}
-            </div>
-            <div class="card-body">
-                <h4 class="card-text">{{post.description}}</h4>
-                
-            </div>            
-        </div>
-        <br>
-    {{/each}}
-</ol>
+{{> postsDisplay p=posts2.post }}

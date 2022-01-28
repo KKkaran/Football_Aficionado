@@ -52,7 +52,20 @@ router.get('/:id',(req,res)=>{
     Users.findOne({
         where:{
             id: req.params.id
-        }
+        },
+        include:[
+            {
+                model:Posts
+            },
+            {
+                model:Comments,
+                include:[
+                    {
+                        model:Posts
+                    }
+                ]
+            }
+        ]
     })
     .then(db=>res.json(db))
     .catch(er=>{

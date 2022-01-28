@@ -1,0 +1,15 @@
+<!-- this will accept an object and show ol of posts-->
+
+<ol>    
+    {{#each p as |post| }}
+        <div class="container card">
+            <div class="card-header">
+                <a href="/singlePost/{{post.id}}">{{post.title}} </a> by {{post.user.username}}
+            </div>
+            <div class="card-body">
+                <h4 class="card-text">{{post.description}}</h4>  
+            </div>            
+        </div>
+        <br>
+    {{/each}}
+</ol>
