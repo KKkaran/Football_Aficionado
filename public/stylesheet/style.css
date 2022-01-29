@@ -1,3 +1,10 @@
-body{
-    background-color: rgb(85, 145, 145);
+body {
+  background-color: rgb(85, 145, 145);
+}
+
+@media only screen and (min-width: 500px) {
+
+  .dashboard {
+    width: 50%;
+  }
 }
