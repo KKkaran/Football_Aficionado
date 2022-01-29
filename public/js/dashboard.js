@@ -49,15 +49,45 @@ const getId2 = async(e)=>{
         fetch(`/users/` + f,{
             method:'get'
         }).then(g=>g.json()).then(h=>{
-            console.log(h.posts)
-
-            const dad = $("<div>")
+            console.log(h)
+            let owner = h.username
+            const dad = $("<div>").addClass("")
             if(h.posts.length>0){
                 h.posts.forEach(element => {
-                    dad.append($('<h3>').text(element.title))
+                    const a = $("<div>");a.addClass("card");
+                    const b = $("<div>");b.addClass("card-header")
+                    const c = $("<div>");c.addClass("d-flex justify-content-between")
+                    const date = $("<div>").html(element.date)
+                    const by = $("<span>").html(` by ${owner}`)
+                    const d = $("<div>")
+                    const link = $("<a />", {
+                        name : "link",
+                        href : `/singlePost/${element.id}`,
+                        text : element.title
+                    });
+                    const desc = $("<div>").addClass("card-body")
+                    const html = $("<h4>").addClass("card-text").html(element.description)
+                    desc.append(html)
+                    a.append(b.append(c.append(d.append(link, by),date)),desc)
+                    const br = $("<br>")
+                    dad.append(a,br)
                 });
     
                 $(".oldPosts").append(dad)
+
+{/* <div class="card">
+            <div class="card-header">
+                <div class="d-flex justify-content-between">
+                    <div><a href="/singlePost/{{post.id}}">{{post.title}} </a> by {{post.user.username}}</div> <div> {{post.date}}</div>
+                </div>
+            </div>
+            <div class="card-body">
+                <h4 class="card-text">{{post.description}}</h4>  
+            </div>            
+</div> */}
+
+
+
             }else{
                 $(".oldPosts").append($("<h3>").text("No posts"))
             }

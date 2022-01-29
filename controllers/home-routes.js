@@ -71,9 +71,18 @@ router.get('/users/:id',(req,res)=>{
         ]
     })
     .then(db=>{
+        console.log(db)
         const posts = db.get({plain:true})
+        const postss = posts.posts;
+        console.log(posts.username)
+        postss.map(r=>{
+             r.date = require("moment")(r.createdAt).format("LLLL")
+        })
+        
+        console.log(postss)
         res.json({
-            posts:posts.posts
+            posts:postss.reverse(),
+            username:posts.username
         })
     })
 })
