@@ -65,10 +65,29 @@ const getId2 = async(e)=>{
                         href : `/singlePost/${element.id}`,
                         text : element.title
                     });
+                    //const editIcon = $("<a>")
+                    //deleteIcon
+                    const deleteIcon = $("<a>").attr("href",`/api/posts/del/${element.id}`)
+                    const img = $("<img>")
+                    img.attr("alt","DeleteIcon")
+                    img.attr('width', 20);
+                    img.attr('height', 20);
+                    img.attr('src',"https://cdn-icons-png.flaticon.com/128/3096/3096687.png");
+                    deleteIcon.append(img)
+
+                    //editIcon
+                    const editIcon = $("<a>").attr("href","/edit.com")
+                    const img2 = $("<img>")
+                    img2.attr("alt","editIcon")
+                    img2.attr('width', 20);
+                    img2.attr('height', 20);
+                    img2.attr('src',"https://cdn-icons-png.flaticon.com/128/2919/2919592.png");
+                    editIcon.append(img2)
+
                     const desc = $("<div>").addClass("card-body")
                     const html = $("<h4>").addClass("card-text").html(element.description)
                     desc.append(html)
-                    a.append(b.append(c.append(d.append(link, by),date)),desc)
+                    a.append(b.append(c.append(d.append(link,deleteIcon,editIcon),date)),desc)
                     const br = $("<br>")
                     dad.append(a,br)
                 });

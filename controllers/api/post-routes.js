@@ -69,7 +69,8 @@ router.post('/',(req,res)=>{
     })
 })
 //delete a post by id
-router.delete("/:id",(req,res)=>{
+router.get("/del/:id",(req,res)=>{
+    console.log(req.params.id)
     Posts.destroy({
         where:{
             id:req.params.id
@@ -80,7 +81,7 @@ router.delete("/:id",(req,res)=>{
           res.status(404).json({ message: 'No post found with this id' });
           return;
         }
-        res.json(dbPostData);
+        res.render("dashboard")
       })
       .catch(err => {
         console.log(err);
