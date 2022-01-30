@@ -138,4 +138,36 @@ router.get("/del/:id",(req,res)=>{
 
     
 })
+//updating/edit a post in DB
+router.put("/:id",(req,res)=>{
+    Posts.update({
+        title:req.body.title,
+        description:req.body.description
+    },{
+        where:{
+            id:req.params.id
+        }
+    }).then(r=>res.json(r))
+    .catch(er=>{
+        console.log(er);
+        res.status(500).json(er)
+    })
+})
+
+router.get("/edit/:id",(req,res)=>{
+    console.log(req.params.id)
+    //from post id lets get the title and desc using seq and send the obj to handlebars for the view
+    Posts.findOne({
+        where:{
+            id:req.params.id
+        }
+    })
+    .then(db=>{
+        const post = db.get({plain:true})
+        console.log(post)
+        res.render("editPost",{post})
+    })
+})
+
+
 module.exports = router;

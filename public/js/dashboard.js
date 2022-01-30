@@ -51,10 +51,10 @@ const getId2 = async(e)=>{
         }).then(g=>g.json()).then(h=>{
             console.log(h)
             let owner = h.username
-            const dad = $("<div>").addClass("")
+            const dad = $("<div>").addClass("dad")
             if(h.posts.length>0){
                 h.posts.forEach(element => {
-                    const a = $("<div>");a.addClass("card");
+                    const a = $("<div>");a.addClass(`card`).attr("data-postId",element.id);
                     const b = $("<div>");b.addClass("card-header")
                     const c = $("<div>");c.addClass("d-flex justify-content-between")
                     const date = $("<div>").html(element.date)
@@ -76,7 +76,7 @@ const getId2 = async(e)=>{
                     deleteIcon.append(img)
 
                     //editIcon
-                    const editIcon = $("<a>").attr("href","/edit.com")
+                    const editIcon = $("<a>").attr("href",`/api/posts/edit/${element.id}`)
                     const img2 = $("<img>")
                     img2.attr("alt","editIcon")
                     img2.attr('width', 20);
@@ -93,20 +93,6 @@ const getId2 = async(e)=>{
                 });
     
                 $(".oldPosts").append(dad)
-
-{/* <div class="card">
-            <div class="card-header">
-                <div class="d-flex justify-content-between">
-                    <div><a href="/singlePost/{{post.id}}">{{post.title}} </a> by {{post.user.username}}</div> <div> {{post.date}}</div>
-                </div>
-            </div>
-            <div class="card-body">
-                <h4 class="card-text">{{post.description}}</h4>  
-            </div>            
-</div> */}
-
-
-
             }else{
                 $(".oldPosts").append($("<h3>").text("No posts"))
             }
