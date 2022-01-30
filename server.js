@@ -16,7 +16,11 @@ app.set('view engine','handlebars');
 app.use(
     session({
         secret:process.env.secret,
-        cookie:{},
+        cookie:{
+            maxAge:10 * 60 * 1000, //user is logged out in 10 minutes
+            sameSite:true,
+            secure: false
+        },
         resave:false,
         saveUninitialized:false,
         store: new SequelizeStore({
