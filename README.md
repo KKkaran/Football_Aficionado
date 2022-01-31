@@ -1,7 +1,8 @@
 <h1 align='center'>Football Fanatics Blog<span><img src="icons/project.png" height="25" width="25"/></span></h1>
     <img src="https://img.shields.io/badge/License-MIT-yellow.svg"/>
     <h2 id="description">Description</h2>
-    <p><img src="icons/search.png" height="18" width="20"/>In this project, a user lands on apge with multiple posts. He can view the titles but cannot see the comments or leave a comment on it. In order to do that, he needs to sign up with a new account and then he is automatically is redirected to the homepage where he can click on a post and leave a comment or check old comments. He can also create a new post by clicking on the dashboard link in the navigation. He will need to add the title and description and when he posts it, he will be redirected to the homepage with his latest post visible right at the top. Plus, in the dashboard view, he can see all his previous posts which he can either delete or edit. If he chooses to edit a psot, he will be redirected to the editPost page where he can edit the title or description and on update button click, his post will be modified and will be displayed at the top of the feed. In the homepage, the posts are displayed from most recent to oldest.</p>
+    <p><img src="icons/search.png" height="18" width="20"/>In this project, a user lands on a page with multiple posts. He can view the titles but cannot see the comments or leave a comment on it. In order to do that, he needs to sign up with a new account and then he is automatically redirected to the homepage where he can click on a post and leave a comment or check old comments. He can also create a new post by clicking on the dashboard link in the navigation. He will need to add the title and description and when he posts it, he will be redirected to the homepage with his latest post visible right at the top. Plus, in the dashboard view, he can see all his previous posts which he can either delete or edit. If he chooses to edit a post, he will be redirected to the editPost page where he can edit the title or description and on update button click, his post will be modified and will be displayed at the top of the feed. In the homepage, the posts are displayed from most recent to oldest.</p>
+    Link : https://footballfanatics.herokuapp.com/
     <hr>
     <h2>Table of Contents</h2>
     <ul>
@@ -34,3 +35,7 @@
     <p>Incase of questions, Find me on: </p>
     <p><img src="icons/gmail.png" height="18" width="20"/> :<a href='mailto: karanpreetsodhi1997@gmail.com'>Email</a></p>
     <p><img src="icons/github.png" height="18" width="20"/> :<a href='https://github.com/kkkaran'>Github</a></p>
+    
+![](icons/login.PNG)
+![](icons/homepage.PNG)
+![](icons/dashboard.PNG)
